@@ -7,7 +7,7 @@ import { NewFaceSnapComponent } from './new-face-snap/new-face-snap.component';
 
 const routes: Routes = [
   {path:'facesnaps', component:SnapFaceListComponent},
-  {path:'facesnap/new', component: NewFaceSnapComponent},
+  {path:'create', component: NewFaceSnapComponent},
   {path:'facesnaps/:id', component:SingleFacesnapComponent},
   {path:'', component:LandingPageComponent}
 ];

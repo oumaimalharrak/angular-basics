@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { Observable, map } from 'rxjs';
+import { FaceSnap } from '../models/facesnap.model';
 
 @Component({
   selector: 'app-new-face-snap',
@@ -6,8 +9,30 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./new-face-snap.component.scss']
 })
 export class NewFaceSnapComponent implements OnInit {
-  constructor() { }
-  ngOnInit(): void {
+  snapForm!: FormGroup;
+  faceSnapPreview$!: Observable<FaceSnap>;
 
+  constructor(private formbuilder : FormBuilder) { }
+  ngOnInit(): void {
+    this.snapForm = this.formbuilder.group(
+      {
+        title: [null],
+        description :[null],
+        imageURL:[null],
+        location:[null]
+      }
+    );
+    this.faceSnapPreview$ = this.snapForm.valueChanges.pipe(
+      map(formValue => ({
+        ...formValue,
+        createdDate: new Date(),
+        id:0,
+        snaps: 0
+      }))
+    )
+  }
+
+  onSubmitForm():void{
+    console.log("Form Submitted",this.snapForm.value);
   }
 }
