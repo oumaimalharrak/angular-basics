@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { FaceSnap } from '../models/facesnap.model';
 import { SnapFaceService } from '../services/snap-face.service';
 import { Router } from '@angular/router';
+import { interval, tap } from 'rxjs';
 
 @Component({
   selector: 'app-facesnap',
@@ -17,6 +18,7 @@ export class FacesnapComponent implements OnInit {
   ngOnInit() {
 
     this.buttonSnap = 'Oh snap!';
+ 
 
 
   }
